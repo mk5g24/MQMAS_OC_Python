@@ -26,11 +26,34 @@ each pulse to have a uniform phase independently.
 Requirements: CMake, a C++20 compiler with OpenMP, Python 3.10+, NumPy, SciPy,
 Matplotlib, and pytest.
 
+### Linux and macOS
+
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build -j
+cmake --build build --parallel
 python -m pip install -r requirements.txt
 ```
+
+### Windows (64-bit Visual Studio toolchain)
+
+Install the **Desktop development with C++** workload (including CMake) from
+Visual Studio Build Tools, then run these commands in PowerShell from the
+repository root:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+py -m pip install -r requirements.txt
+cmake -S . -B build -A x64
+cmake --build build --config Release --parallel
+$env:PYTHONPATH = "$PWD\python"
+pytest -q
+```
+
+Do not copy `libmqmas_core.so` from Linux to Windows. Native build products are
+not portable between operating systems or between 32- and 64-bit processes.
+The loader can also be pointed at a nonstandard build using the
+`MQMAS_CORE_LIBRARY` environment variable.
 
 For reproducible CPU timings, avoid nested BLAS threading:
 

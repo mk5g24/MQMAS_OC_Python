@@ -3,7 +3,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import ctypes as ct
+import os
+import platform
 from pathlib import Path
+import sys
 from typing import Iterable
 
 import numpy as np
@@ -49,16 +52,22 @@ class MQMASCore:
         if self.dimension not in (4, 6):
             raise ValueError("compiled core currently supports I=3/2 and I=5/2")
         root = Path(__file__).resolve().parents[2]
-        if library is None:
-            candidates = [
-                root / "build" / "libmqmas_core.so",
-                root / "build" / "libmqmas_core.dylib",
-                root / "build" / "mqmas_core.dll",
-            ]
-            library = next((p for p in candidates if p.exists()), None)
-            if library is None:
-                raise FileNotFoundError("build the C++ library with CMake first")
-        self.lib = ct.CDLL(str(library))
+        library_path = self._resolve_library(root, library)
+        try:
+            # The exported C API uses the cdecl calling convention, so CDLL is
+            # correct on Windows as well as on Unix-like systems.
+            self.lib = ct.CDLL(str(library_path))
+        except OSError as exc:
+            python_bits = ct.sizeof(ct.c_void_p) * 8
+            raise OSError(
+                f"Failed to load MQMAS native library: {library_path}\n"
+                f"Platform: {sys.platform}, machine: {platform.machine()}, "
+                f"Python: {python_bits}-bit.\n"
+                "Rebuild the library on this machine and make sure the DLL/"
+                "shared-library architecture matches Python. On Windows use "
+                "`cmake -S . -B build -A x64` followed by "
+                "`cmake --build build --config Release --parallel`."
+            ) from exc
         self._configure_api()
         weights, didx, bidx, b1 = make_ensemble_mapping(drift, b1_scales, b1_weights)
         self.weights, self.didx, self.bidx, self.b1 = weights, didx, bidx, b1
@@ -78,6 +87,52 @@ class MQMASCore:
         if not self.handle:
             raise RuntimeError("C++ context creation failed")
         self.mq_order = mq_order
+
+    @staticmethod
+    def _resolve_library(
+        root: Path, library: str | Path | None
+    ) -> Path:
+        """Resolve only a native library for the current operating system."""
+        if library is not None:
+            path = Path(library).expanduser().resolve()
+            if not path.is_file():
+                raise FileNotFoundError(f"native library does not exist: {path}")
+            return path
+
+        env_library = os.environ.get("MQMAS_CORE_LIBRARY")
+        if env_library:
+            path = Path(env_library).expanduser().resolve()
+            if not path.is_file():
+                raise FileNotFoundError(
+                    "MQMAS_CORE_LIBRARY points to a missing file: " f"{path}"
+                )
+            return path
+
+        if sys.platform == "win32":
+            names = ("mqmas_core.dll",)
+        elif sys.platform == "darwin":
+            names = ("libmqmas_core.dylib",)
+        else:
+            names = ("libmqmas_core.so",)
+
+        build = root / "build"
+        search_dirs = (
+            build,
+            build / "Release",
+            build / "RelWithDebInfo",
+            build / "Debug",
+            build / "MinSizeRel",
+        )
+        candidates = [directory / name for directory in search_dirs for name in names]
+        for path in candidates:
+            if path.is_file():
+                return path.resolve()
+
+        checked = "\n  ".join(str(path) for path in candidates)
+        raise FileNotFoundError(
+            "Could not find the MQMAS native library for this platform. "
+            "Build it with CMake first. Checked:\n  " + checked
+        )
 
     def _configure_api(self) -> None:
         pdouble = ct.POINTER(ct.c_double)
