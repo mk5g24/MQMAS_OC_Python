@@ -32,8 +32,8 @@ def main() -> None:
     drift = concatenate_drift_models((site1, site2), (0.5, 0.5))
     core = MQMASCore(drift, mq_order=3, b1_scales=(0.9, 1.0, 1.1),
                      b1_weights=(0.25, 0.50, 0.25))
-    grid = PulseGrid(10e-6, 10e-6, 0.2e-6, drift.dt_s)
-    opt = PairOptimiser(core, grid, max_nutation_hz=120e3,
+    grid = PulseGrid(80e-6, 10e-6, 0.2e-6, drift.dt_s)
+    opt = PairOptimiser(core, grid, max_nutation_hz=100e3,
                         power_penalty=3e-5, smoothness_penalty=1e-4,
                         objective="amplitude")
     rng = np.random.default_rng(args.seed)

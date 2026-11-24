@@ -1,0 +1,77 @@
+{
+  "root": "..",
+  "summary_dir": "results",
+  "plots_dir": "plots",
+  "summary": {
+    "json": "summary.json",
+    "csv": "summary.csv",
+    "markdown": "summary.md",
+    "manifest": "report_manifest.json"
+  },
+  "plots": {
+    "formats": [
+      "png"
+    ],
+    "dpi": 180,
+    "pulse_pairs": true,
+    "convergence": true,
+    "validation_vs_baseline": true,
+    "time_step_convergence": true,
+    "rotor_phase_sensitivity": true
+  },
+  "benchmark": {
+    "file": "results/benchmark.txt"
+  },
+  "cases": [
+    {
+      "id": "rb",
+      "label": "Rb2SO4 87Rb",
+      "folder": "results/rb2so4_10us_dt05",
+      "result": "result.json",
+      "excitation": "excitation_pixels.csv",
+      "conversion": "conversion_pixels.csv",
+      "validation": "results/rb_final_validation.json",
+      "baseline": {
+        "file": "results/hard_pulse_final_validation.json",
+        "key": "rb"
+      },
+      "rotor_phase": {
+        "file": "results/rotor_phase_sensitivity.json",
+        "key": "rb"
+      },
+      "benchmark_key": "rb",
+      "plot_name": "rb2so4_pulse_pair.png",
+      "metadata": {
+        "system": "Rb2SO4 87Rb",
+        "spin": "3/2",
+        "mq_order": 3,
+        "training_orientations": 512
+      }
+    },
+    {
+      "id": "al",
+      "label": "AlPO4 27Al",
+      "folder": "results/alpo4_10us_dense",
+      "result": "result.json",
+      "excitation": "excitation_pixels.csv",
+      "conversion": "conversion_pixels.csv",
+      "validation": "results/al_final_validation.json",
+      "baseline": {
+        "file": "results/hard_pulse_final_validation.json",
+        "key": "al"
+      },
+      "rotor_phase": {
+        "file": "results/rotor_phase_sensitivity.json",
+        "key": "al"
+      },
+      "benchmark_key": "al",
+      "plot_name": "alpo4_pulse_pair.png",
+      "metadata": {
+        "system": "AlPO4 27Al",
+        "spin": "5/2",
+        "mq_order": 3,
+        "training_orientations": 512
+      }
+    }
+  ]
+}
