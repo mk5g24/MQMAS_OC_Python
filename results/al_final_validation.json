@@ -1,0 +1,70 @@
+{
+  "dense_powder_orientations": 512,
+  "ensemble_members": 1536,
+  "split_dt_0p1us": {
+    "objective": 0.08385821860977244,
+    "coherent_real": -0.12039757331847323,
+    "coherent_imag": -0.2633678851887513,
+    "coherent_amplitude": 0.2895828354888674,
+    "incoherent_amplitude": 0.29960012643303074,
+    "coherence_factor": 0.9665644635620588,
+    "excitation_coherent": 0.45822539778029947,
+    "conversion_coherent": 0.5760928300131255,
+    "excitation_magnitude": 0.47681299632379803,
+    "conversion_magnitude": 0.5797678385251989
+  },
+  "eval_dt_0p1_s": 0.012001574999885634,
+  "split_dt_0p05us": {
+    "objective": 0.0835790691272678,
+    "coherent_real": -0.12005189512412962,
+    "coherent_imag": -0.26299545928470475,
+    "coherent_amplitude": 0.2891004481616516,
+    "incoherent_amplitude": 0.2991158489675766,
+    "coherence_factor": 0.9665166495172556,
+    "excitation_coherent": 0.4578012359422554,
+    "conversion_coherent": 0.5757080284695103,
+    "excitation_magnitude": 0.47636651321211715,
+    "conversion_magnitude": 0.5793959917330495
+  },
+  "eval_dt_0p05_s": 0.02019058700034293,
+  "split_dt_0p025us": {
+    "objective": 0.08350907312248927,
+    "coherent_real": -0.11996539953815005,
+    "coherent_imag": -0.26290183726277244,
+    "coherent_amplitude": 0.28897936452710477,
+    "incoherent_amplitude": 0.2989942929474841,
+    "coherence_factor": 0.9665046167883266,
+    "excitation_coherent": 0.4576946729995881,
+    "conversion_coherent": 0.5756110710201147,
+    "excitation_magnitude": 0.47625440288265264,
+    "conversion_magnitude": 0.5793023446193091
+  },
+  "eval_dt_0p025_s": 0.04158944299979339,
+  "relative_dt_error_0p1_vs_0p025": 0.0020882839255673097,
+  "relative_dt_error_0p05_vs_0p025": 0.0004190044321848759,
+  "exact_subset_split": {
+    "objective": 0.06246498887516075,
+    "coherent_real": -0.10076438206915704,
+    "coherent_imag": -0.22871713574059488,
+    "coherent_amplitude": 0.24992996794134303,
+    "incoherent_amplitude": 0.26003368166989926,
+    "coherence_factor": 0.9611445961012757,
+    "excitation_coherent": 0.4310459128012277,
+    "conversion_coherent": 0.5281497274584142,
+    "excitation_magnitude": 0.44911512819248633,
+    "conversion_magnitude": 0.5315306570082953
+  },
+  "exact_subset_direct": {
+    "coherent_amplitude": 0.2493497632949409,
+    "incoherent_amplitude": 0.25945493806256875,
+    "coherence_factor": 0.961052293538576,
+    "coherent_complex": [
+      -0.10039980897739526,
+      -0.22824369172563258
+    ],
+    "elapsed_s": 8.28671666299988,
+    "ensemble_size": 96,
+    "substeps_per_control_step": 8
+  },
+  "relative_split_vs_exact_subset": 0.0023268706524330555
+}

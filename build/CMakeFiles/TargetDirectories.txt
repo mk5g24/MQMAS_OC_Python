@@ -1,0 +1,3 @@
+C:/Users/mk5g24/Documents/Quadrupolar_Nuclei/OC_Python/mqmas_tailored_optimizer/build/CMakeFiles/mqmas_core.dir
+C:/Users/mk5g24/Documents/Quadrupolar_Nuclei/OC_Python/mqmas_tailored_optimizer/build/CMakeFiles/edit_cache.dir
+C:/Users/mk5g24/Documents/Quadrupolar_Nuclei/OC_Python/mqmas_tailored_optimizer/build/CMakeFiles/rebuild_cache.dir

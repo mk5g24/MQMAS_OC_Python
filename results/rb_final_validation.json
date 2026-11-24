@@ -1,0 +1,56 @@
+{
+  "dense_powder_orientations": 1024,
+  "ensemble_members": 3072,
+  "split_dt_0p05us": {
+    "objective": 0.04049860385824418,
+    "coherent_real": 0.1981951629609856,
+    "coherent_imag": -0.034889557708754994,
+    "coherent_amplitude": 0.2012426492030061,
+    "incoherent_amplitude": 0.2237981030211256,
+    "coherence_factor": 0.8992151697729522,
+    "excitation_coherent": 0.036961277571437856,
+    "conversion_coherent": 0.10099877936512337,
+    "excitation_magnitude": 0.4205370234211441,
+    "conversion_magnitude": 0.4390950824102005
+  },
+  "eval_dt_0p05_s": 0.015137222000248585,
+  "split_dt_0p025us": {
+    "objective": 0.040091865633159675,
+    "coherent_real": 0.19723286938565765,
+    "coherent_imag": -0.034511749695716444,
+    "coherent_amplitude": 0.20022953237012686,
+    "incoherent_amplitude": 0.22269713957908321,
+    "coherence_factor": 0.8991113794662021,
+    "excitation_coherent": 0.036751808937663756,
+    "conversion_coherent": 0.10102831057034141,
+    "excitation_magnitude": 0.419536046574004,
+    "conversion_magnitude": 0.4378834781088548
+  },
+  "eval_dt_0p025_s": 0.030164855000293755,
+  "relative_dt_error_0p05_vs_0p025": 0.005059777251072467,
+  "exact_subset_split": {
+    "objective": 0.03165078802268983,
+    "coherent_real": 0.17441429997596428,
+    "coherent_imag": -0.03507762800681046,
+    "coherent_amplitude": 0.1779066834682998,
+    "incoherent_amplitude": 0.2102733480729925,
+    "coherence_factor": 0.8460733854227821,
+    "excitation_coherent": 0.04378510388118663,
+    "conversion_coherent": 0.11461295063081435,
+    "excitation_magnitude": 0.40916258916994824,
+    "conversion_magnitude": 0.42944113305418674
+  },
+  "exact_subset_direct": {
+    "coherent_amplitude": 0.17683828479080457,
+    "incoherent_amplitude": 0.20907508042550438,
+    "coherence_factor": 0.8458123485156993,
+    "coherent_complex": [
+      0.17339023846887974,
+      -0.03475059958416142
+    ],
+    "elapsed_s": 10.960127888999978,
+    "ensemble_size": 96,
+    "substeps_per_control_step": 6
+  },
+  "relative_split_vs_exact_subset": 0.006041670664014382
+}

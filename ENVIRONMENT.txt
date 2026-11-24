@@ -1,0 +1,10 @@
+Reference run date: 2026-11-23
+CPU: AMD EPYC 9V74 80-Core Processor
+Logical CPUs visible: 9
+Python: Python 3.13.5
+Compiler: c++ (Debian 14.2.0-19) 14.2.0
+CMake: cmake version 3.31.6
+Recommended runtime variables:
+  OMP_NUM_THREADS=8
+  OPENBLAS_NUM_THREADS=1
+  MKL_NUM_THREADS=1
